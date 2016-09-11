@@ -146,9 +146,9 @@ class ControlMainWindow(QtGui.QMainWindow):
         cpu_count_label = QtGui.QLabel('CPU Threads to use')
         self.cpu_count = multiprocessing.cpu_count()
         self.cpu_spinbox = QtGui.QSpinBox()
-        self.cpu_spinbox.valueChanged.connect(self.update_cpu_count)
         self.cpu_spinbox.setMinimum(1)
         self.cpu_spinbox.setValue(self.cpu_count)
+        self.cpu_spinbox.valueChanged.connect(self.update_cpu_count)
         self.run_btn = QtGui.QPushButton('Run')
         self.run_btn.clicked.connect(self.run_start_stop)
 
@@ -208,6 +208,7 @@ class ControlMainWindow(QtGui.QMainWindow):
 
     def update_cpu_count(self):
         self.cpu_count = self.cpu_spinbox.value()
+        self.monitor.cpus = self.cpu_count
 
     def run_start_stop(self):
         if not self.monitor.create_threads:
