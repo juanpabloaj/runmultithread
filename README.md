@@ -1,5 +1,7 @@
 # runmultithread
-Run the same process with different inputs in different threads
+Run the same process with different inputs in different threads.
+
+Download from the [releases page](https://github.com/juanpabloaj/runmultithread/releases).
 
 ![Imgur](http://i.imgur.com/Fu85uhU.png)
 
