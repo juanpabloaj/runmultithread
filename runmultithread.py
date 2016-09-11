@@ -94,6 +94,8 @@ class ControlMainWindow(QtGui.QMainWindow):
         self.centralwidget = QtGui.QWidget(self)
         self.centralwidget.setObjectName("centralwidget")
 
+        self.statusBar().showMessage('Software experimental Alpha state')
+
         self.vLayout = QtGui.QVBoxLayout(self.centralwidget)
         self.vLayout.setObjectName("vLayout")
 
