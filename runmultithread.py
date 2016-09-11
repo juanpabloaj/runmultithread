@@ -7,6 +7,8 @@ import time
 
 from PySide import QtCore, QtGui
 
+__version__ = "0.2.0"
+
 
 def replace_slash(string):
     return string.replace('/', '\\')
@@ -94,6 +96,9 @@ class ControlMainWindow(QtGui.QMainWindow):
         self.centralwidget = QtGui.QWidget(self)
         self.centralwidget.setObjectName("centralwidget")
 
+        self.create_actions()
+        self.create_menus()
+
         self.statusBar().showMessage('Experimental Software alpha state')
 
         self.vLayout = QtGui.QVBoxLayout(self.centralwidget)
@@ -172,6 +177,38 @@ class ControlMainWindow(QtGui.QMainWindow):
         )
         self.threads.append(self.monitor)
         self.monitor.start()
+
+    def about(self):
+
+        repo = "https://github.com/juanpabloaj/runmultithread"
+
+        QtGui.QMessageBox.about(
+            self, "Contact & about",
+            "runmultithread {version}\n"
+            "Contact: http://github.com/juanpabloaj/\n"
+            "Download: {repo}/releases\n"
+            "\n".format(
+                version=__version__, repo=repo
+            )
+        )
+
+    def create_actions(self):
+
+        self.aboutAct = QtGui.QAction(
+            "&About", self, statusTip="Show the application's About",
+            triggered=self.about
+        )
+
+        self.aboutQtAct = QtGui.QAction(
+            "About &Qt", self, statusTip="Show the Qt Library's About",
+            triggered=QtGui.qApp.aboutQt
+        )
+
+    def create_menus(self):
+        self.menubar = self.menuBar()
+        self.aboutMenu = self.menubar.addMenu('&About')
+        self.aboutMenu.addAction(self.aboutAct)
+        self.aboutMenu.addAction(self.aboutQtAct)
 
     def select_bin_path(self):
         if self.running_process.count() > 0 or self.monitor.create_threads:
