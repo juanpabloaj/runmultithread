@@ -114,7 +114,7 @@ class ControlMainWindow(QtGui.QMainWindow):
         add_file_layout.addStretch(1)
 
         add_file_btn = QtGui.QPushButton('Add file')
-        add_dir_btn = QtGui.QPushButton('Add Folder')
+        add_dir_btn = QtGui.QPushButton('Add folder')
         self.filter_line = QtGui.QLineEdit()
         self.filter_line.setPlaceholderText('Extensions to filter files')
 
@@ -126,12 +126,18 @@ class ControlMainWindow(QtGui.QMainWindow):
         add_file_layout.addWidget(add_dir_btn)
 
         process_vlayout = QtGui.QVBoxLayout()
+        waiting_label = QtGui.QLabel('Input files')
         self.waiting_files = QtGui.QListWidget()
+        running_label = QtGui.QLabel('Running')
         self.running_process = QtGui.QListWidget()
+        finished_label = QtGui.QLabel('Finished')
         self.finished_process = QtGui.QListWidget()
 
+        process_vlayout.addWidget(waiting_label)
         process_vlayout.addWidget(self.waiting_files)
+        process_vlayout.addWidget(running_label)
         process_vlayout.addWidget(self.running_process)
+        process_vlayout.addWidget(finished_label)
         process_vlayout.addWidget(self.finished_process)
 
         run_layout = QtGui.QHBoxLayout()
